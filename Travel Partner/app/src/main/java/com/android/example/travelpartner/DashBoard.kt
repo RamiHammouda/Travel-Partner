@@ -7,10 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.android.example.travelpartner.Fragments.HomeFragment
-import com.android.example.travelpartner.Fragments.NotificationFragment
-import com.android.example.travelpartner.Fragments.ProfileFragment
-import com.android.example.travelpartner.Fragments.SearchFragment
+import com.android.example.travelpartner.Fragments.*
 import kotlinx.android.synthetic.main.activity_dash_board.*
 
 class DashBoard : AppCompatActivity() {
@@ -23,7 +20,7 @@ class DashBoard : AppCompatActivity() {
         val profileFragment = ProfileFragment()
         val notificationFragment = NotificationFragment()
         val searchFragment = SearchFragment()
-        val homeFragment = HomeFragment()
+        val tripFragment = Trips0Fragment()
 
 
         makeCurrentFragment(profileFragment)
@@ -33,7 +30,7 @@ class DashBoard : AppCompatActivity() {
             when (id) {
                 R.id.profile -> makeCurrentFragment(profileFragment)
                 R.id.search -> makeCurrentFragment(searchFragment)
-                R.id.home -> makeCurrentFragment(homeFragment)
+                R.id.home -> makeCurrentFragment(tripFragment)
                 R.id.notification -> makeCurrentFragment(notificationFragment)
             }
             true
