@@ -41,4 +41,19 @@
         android:hint="Choose end date"
         android:textSize="15dp"/>
 
+    <Button
+        android:id="@+id/next_button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Next"
+        android:textSize="18dp"
+        android:fontFamily="@font/roboto"
+        android:textAllCaps="false"
+        android:layout_marginTop="630dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/create_trip_buttom"
+        />
+
 </FrameLayout>
