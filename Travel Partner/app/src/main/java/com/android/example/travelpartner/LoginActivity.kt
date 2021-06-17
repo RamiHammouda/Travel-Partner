@@ -4,88 +4,88 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import com.google.firebase.auth.AuthResult
+import androidx.databinding.DataBindingUtil
+import com.android.example.travelpartner.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.android.gms.tasks.OnCompleteListener
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_signup.*
+import kotlinx.android.synthetic.main.activity_register.*
 
-public class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLoginBinding //data-Binding Variable declaration
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login) //set Content using Data Binding
 
         val actionBar = supportActionBar
         actionBar!!.title= "Log In"
         actionBar.setDisplayHomeAsUpEnabled(true)
 
-        register.setOnClickListener{
+        //when the use doesn't have an account and presses on register he will be sent to the register activity
+        binding.register.setOnClickListener{
+
             finish()
-            startActivity(Intent(this, SignupActivity::class.java))
+            startActivity(Intent(this, RegisterActivity::class.java))
             //onBackPressed()
         }
 
-        btn_login.setOnClickListener {
+        //Login Button on Click Listener
+        binding.btnLogin.setOnClickListener {
             when
             {
-                TextUtils.isEmpty(ed_login_mail.text.toString().trim { it <= ' '}) -> {
+                //this 'when' checks if the user has entered something in the email section
+                TextUtils.isEmpty(binding.edLoginMail.text.toString().trim { it <= ' '}) -> {
                     Toast.makeText(
                         this@LoginActivity,
                         "Please enter email.",
                         Toast.LENGTH_SHORT
                     ).show()
+                    //if empty display a toast saying please enter email
                 }
-
-                TextUtils.isEmpty(ed_login_password.text.toString().trim { it <= ' '}) -> {
+                //this when checks if the user has entered something in the password section
+                TextUtils.isEmpty(binding.edLoginPassword.text.toString().trim { it <= ' '}) -> {
                     Toast.makeText(
                         this@LoginActivity,
                         "Please enter password.",
                         Toast.LENGTH_SHORT
                     ).show()
+                    //if empty display a toast saying please enter password
                 }
                 else -> {
-
-                    val email:String = ed_login_mail.text.toString().trim { it <= ' '}
-                    val password:String = ed_login_password.text.toString().trim { it <= ' '}
+                    //if the input is not empty, first of all we have to trim the input to get rid of empty spaces
+                    val email:String = binding.edLoginMail.text.toString().trim { it <= ' '}
+                    val password:String = binding.edLoginPassword.text.toString().trim { it <= ' '}
 
                     //Log in using FireBaseAuth
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener {task ->
 
-                                if (task.isSuccessful){
-                                    Toast.makeText(
-                                        this@LoginActivity,
-                                        "You are logged in successfully",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-
-                                    val intent =
-                                        Intent(this@LoginActivity, DashBoard::class.java)
-                                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                    intent.putExtra("user_id", FirebaseAuth.getInstance().currentUser!!.uid)
-                                    intent.putExtra("email_id", email)
-                                    startActivity(intent)
-                                    finish()
-                                } else {
-                                    //If the registration is not successful then show error message
-                                    Toast.makeText(
-                                        this@LoginActivity,
-                                        task.exception!!.message.toString(),
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
+                            if (task.isSuccessful){
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "You are logged in successfully",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                //the following block will send the user to the Dashboard activity if the login was successful
+                                val intent =
+                                    Intent(this@LoginActivity, Dashboard::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                intent.putExtra("user_id", FirebaseAuth.getInstance().currentUser!!.uid)
+                                intent.putExtra("email_id", email)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                //If the registration is not successful then show error message
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    task.exception!!.message.toString(),
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
-
-
-
-
-                }
-
+                        }
+                    }
             }
         }
     }

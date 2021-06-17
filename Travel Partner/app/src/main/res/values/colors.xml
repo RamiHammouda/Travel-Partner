@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Themes Colors-->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,32 +8,28 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--Home Colors-->
+    <color name="colorAccent">#ED2173</color>
+    <color name="colorPrimary">#ED2173</color>
+    <color name="colorPrimaryDark">#222934</color>
+
+    <!--NavigationBard Colors-->
     <color name="home">#5B37B7</color>
     <color name="notification">#C9379D</color>
     <color name="search">#E6A919</color>
     <color name="profile">#1194AA</color>
-    <color name="colorPrimary">#ED2173</color>
-    <color name="colorPrimaryDark">#222934</color>
-    <color name="colorAccent">#ED2173</color>
 
-
-    <color name="profilColorPrimary">#49BEFF</color>
-    <color name="profilColorPrimaryDark">#65DCE5</color>
-    <color name="profilColorAccent">#0D5D98</color>
-
+    <!--Profile Colors-->
     <color name="address">#2F7092</color>
-    <color name="followers">#0D5D98</color>
     <color name="headings">#3797CF</color>
     <color name="solidCircle">#AAFFFFFF</color>
     <color name="circleBorder">#50FFFFFF</color>
     <color name="gradEnd">#67EFC8</color>
     <color name="gradStart">#63C9FF</color>
-    <color name="followersBg">#65DCE5</color>
-    <color name="followingBg">#49BEFF</color>
     <color name="grey">#E5E5E5</color>
 
+    <!--myTrips Colors-->
     <color name="tripsTextColor">#AFAFAF</color>
     <color name="lightGrey">#F2F2F2</color>
-
-
 </resources>

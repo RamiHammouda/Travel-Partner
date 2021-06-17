@@ -5,25 +5,25 @@
 
     <item
         android:id="@+id/home"
-        android:icon="@drawable/ic_baseline_airplanemode_active_24"
+        android:icon="@drawable/ic_baseline_airplanemode"
         android:title="My Trips"
         app:cnb_iconColor="@color/home"/>
 
     <item
         android:id="@+id/search"
         android:title="Search"
-        android:icon="@drawable/ic_baseline_search_24"
+        android:icon="@drawable/ic_baseline_search"
         app:cnb_iconColor="@color/search"/>
 
     <item
         android:id="@+id/notification"
         android:title="Notifications"
-        android:icon="@drawable/ic_baseline_notifications_24"
+        android:icon="@drawable/ic_baseline_notifications"
         app:cnb_iconColor="@color/notification"/>
 
     <item
         android:id="@+id/profile"
-        android:icon="@drawable/ic_baseline_people_24"
+        android:icon="@drawable/ic_baseline_people"
         android:title="Profile"
         app:cnb_iconColor="@color/home"/>
 

@@ -4,60 +4,63 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.databinding.DataBindingUtil
+import com.android.example.travelpartner.databinding.ActivityRegisterBinding
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.android.gms.tasks.OnCompleteListener
-import kotlinx.android.synthetic.main.activity_signup.*
 
+class RegisterActivity : AppCompatActivity() {
 
-class SignupActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityRegisterBinding //data-Binding Variable declaration
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_register) //set Content using Data Binding
 
         val actionBar = supportActionBar
         actionBar!!.title= "Sign Up"
         actionBar.setDisplayHomeAsUpEnabled(true)
 
-
-        login.setOnClickListener{
+        //when the use does have an account and presses on login he will be sent to the login activity
+        binding.login.setOnClickListener{
             finish()
             startActivity(Intent(this, LoginActivity::class.java))
         }
 
-        btn_register.setOnClickListener {
+        //Register Button on Click Listener
+        binding.btnRegister.setOnClickListener {
             when
             {
-
-                TextUtils.isEmpty(ed_register_mail.text.toString().trim { it <= ' '}) -> {
+                //this 'when' checks if the user has entered something in the email section
+                TextUtils.isEmpty(binding.edRegisterMail.text.toString().trim { it <= ' '}) -> {
                     Toast.makeText(
-                        this@SignupActivity,
+                        this@RegisterActivity,
                         "Please enter email.",
                         Toast.LENGTH_SHORT
                     ).show()
+                    //if empty display a toast saying please enter email
                 }
-
-                TextUtils.isEmpty(ed_register_password.text.toString().trim { it <= ' '}) -> {
+                //this when checks if the user has entered something in the password section
+                TextUtils.isEmpty(binding.edRegisterPassword.text.toString().trim { it <= ' '}) -> {
                     Toast.makeText(
-                        this@SignupActivity,
+                        this@RegisterActivity,
                         "Please enter password.",
                         Toast.LENGTH_SHORT
                     ).show()
+                    //if empty display a toast saying please enter password
                 }
                 else -> {
-
-                    val email:String = ed_register_mail.text.toString().trim { it <= ' '}
-                    val password:String = ed_register_password.text.toString().trim { it <= ' '}
+                    //if the input is not empty, first of all we have to trim the input to get rid of empty spaces
+                    val email:String = binding.edRegisterMail.text.toString().trim { it <= ' '}
+                    val password:String = binding.edRegisterPassword.text.toString().trim { it <= ' '}
 
                     //Create an instance and a register with email and password
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
                         .addOnCompleteListener(
-                            OnCompleteListener<AuthResult> {task ->
+                            OnCompleteListener<AuthResult> { task ->
 
                                 //if the registration is successful
                                 if (task.isSuccessful){
@@ -65,13 +68,13 @@ class SignupActivity : AppCompatActivity() {
                                     val firebaseUser: FirebaseUser = task.result!!.user!!
 
                                     Toast.makeText(
-                                        this@SignupActivity,
+                                        this@RegisterActivity,
                                         "You are registered successfully",
                                         Toast.LENGTH_SHORT
                                     ).show()
-
+                                    //the following block will send the user to the Dashboard activity if the registration was successful
                                     val intent =
-                                        Intent(this@SignupActivity, DashBoard::class.java)
+                                        Intent(this@RegisterActivity, Dashboard::class.java)
                                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     intent.putExtra("user_id", firebaseUser.uid)
                                     intent.putExtra("email_id", email)
@@ -80,7 +83,7 @@ class SignupActivity : AppCompatActivity() {
                                 } else {
                                     //If the registration is not successful then show error message
                                     Toast.makeText(
-                                        this@SignupActivity,
+                                        this@RegisterActivity,
                                         task.exception!!.message.toString(),
                                         Toast.LENGTH_SHORT
                                     ).show()
@@ -95,7 +98,6 @@ class SignupActivity : AppCompatActivity() {
             }
         }
 
+
     }
-
-
 }

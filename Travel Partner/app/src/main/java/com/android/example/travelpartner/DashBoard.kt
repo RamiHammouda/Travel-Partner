@@ -1,44 +1,43 @@
 package com.android.example.travelpartner
 
-import android.content.ContentValues.TAG
-import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.android.example.travelpartner.Fragments.*
-import kotlinx.android.synthetic.main.activity_dash_board.*
+import com.android.example.travelpartner.databinding.ActivityDashboardBinding
 
-class DashBoard : AppCompatActivity() {
+class Dashboard : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDashboardBinding //data-Binding Variable declaration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dash_board)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard) //set Content using Data Binding
 
-
+        //adding our fragments
         val profileFragment = ProfileFragment()
-        val notificationFragment = NotificationFragment()
+        val notificationFragment = NotificationsFragment()
         val searchFragment = SearchFragment()
-        val tripFragment = Trips0Fragment()
+        val tripFragment = TripsFragment1()
 
+        //first fragment after login or register
+        makeCurrentFragment(tripFragment)
 
-        makeCurrentFragment(profileFragment)
-
-        bottom_navigation.setOnItemSelectedListener { id ->
-            var fragment: Fragment? = null
+        //on click listener to the bottomNavigation where the fragment will be changed depending on the id of the clicked button in the navigation bar
+        binding.bottomNavigation.setOnItemSelectedListener { id ->
             when (id) {
                 R.id.profile -> makeCurrentFragment(profileFragment)
                 R.id.search -> makeCurrentFragment(searchFragment)
                 R.id.home -> makeCurrentFragment(tripFragment)
                 R.id.notification -> makeCurrentFragment(notificationFragment)
             }
-            true
         }
     }
-        private fun makeCurrentFragment(fragment: Fragment) =
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fl_wrapper, fragment)
-                commit()
-            }
+    //this function will set the current fragment to the one passed as parameter
+    private fun makeCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fl_wrapper, fragment)
+            commit()
+        }
+
 }
