@@ -10,12 +10,12 @@
         android:label="fragment_trips1"
         tools:layout="@layout/fragment_trips1" >
         <action
-            android:id="@+id/action_tripsFragment1_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            android:id="@+id/action_tripsFragment1_to_tripsFragment2"
+            app:destination="@id/tripsFragment2" />
     </fragment>
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.android.example.travelpartner.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:id="@+id/tripsFragment2"
+        android:name="com.android.example.travelpartner.TripsFragment2"
+        android:label="fragment_trips2"
+        tools:layout="@layout/fragment_trips2" />
 </navigation>

@@ -21,7 +21,7 @@ class Dashboard : AppCompatActivity() {
         val tripFragment = TripsFragment1()
 
         //first fragment after login or register
-        makeCurrentFragment(tripFragment)
+        makeCurrentFragment(profileFragment)
 
         //on click listener to the bottomNavigation where the fragment will be changed depending on the id of the clicked button in the navigation bar
         binding.bottomNavigation.setOnItemSelectedListener { id ->
