@@ -14,6 +14,7 @@ class Dashboard : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard) //set Content using Data Binding
 
+
         //adding our fragments
         val profileFragment = ProfileFragment()
         val notificationFragment = NotificationsFragment()
@@ -28,7 +29,7 @@ class Dashboard : AppCompatActivity() {
             when (id) {
                 R.id.profile -> makeCurrentFragment(profileFragment)
                 R.id.search -> makeCurrentFragment(searchFragment)
-                R.id.home -> makeCurrentFragment(tripFragment)
+                R.id.trip -> makeCurrentFragment(tripFragment)
                 R.id.notification -> makeCurrentFragment(notificationFragment)
             }
         }

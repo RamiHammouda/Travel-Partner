@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
-import com.android.example.travelpartner.databinding.FragmentTrips1Binding
+import com.android.example.travelpartner.databinding.FragmentTrips5Binding
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,14 +17,14 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [TripsFragment1.newInstance] factory method to
+ * Use the [TripsFragment5.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TripsFragment1 : Fragment() {
+class TripsFragment5 : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    lateinit var binding: FragmentTrips1Binding //Declare the Data binding variable
+    lateinit var binding: FragmentTrips5Binding //Declare the Data binding variable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,17 +38,23 @@ class TripsFragment1 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = DataBindingUtil.inflate<FragmentTrips1Binding>(inflater,
-            R.layout.fragment_trips1,container,false)           //Initialize the Data binding variable
+        val binding = DataBindingUtil.inflate<FragmentTrips5Binding>(inflater,
+            R.layout.fragment_trips5,container,false)           //Initialize the Data binding variable
 
-        //setOnClickListener for the button called "next" so that when that button is clicked the next fragment will appear in place of the first one
-        binding.createFirstTrip.setOnClickListener{
-                val whereToFragment = TripsFragment4()
-                val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
-                transaction.replace(R.id.fl_wrapper, whereToFragment)
+        //setOnClickListener for the button called "next" so that when that button is clicked the next fragment will appear in place of the second one
+        binding.publishButton.setOnClickListener{
+            //save data to firebase
+        }
+
+        //setOnClickListener for the button called "previous" so that when that button is clicked the previous fragment will appear in place of the current one
+        binding.previousButton.setOnClickListener{
+            val trips3Fragment = TripsFragment3()
+            val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.fl_wrapper, trips3Fragment)
             transaction.commit()
         }
-        return binding.root
+
+        return binding!!.root
     }
 
     companion object {
@@ -57,12 +64,12 @@ class TripsFragment1 : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment TripsFragment1.
+         * @return A new instance of fragment TripsFragment5.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            TripsFragment1().apply {
+            TripsFragment5().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

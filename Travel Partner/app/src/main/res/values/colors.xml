@@ -15,10 +15,10 @@
     <color name="colorPrimaryDark">#222934</color>
 
     <!--NavigationBard Colors-->
-    <color name="home">#5B37B7</color>
+    <color name="trip">#5B37B7</color>
     <color name="notification">#C9379D</color>
     <color name="search">#E6A919</color>
-    <color name="profile">#1194AA</color>
+    <color name="profile">#63D4EF</color>
 
     <!--Profile Colors-->
     <color name="address">#2F7092</color>

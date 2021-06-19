@@ -4,10 +4,10 @@
     app:cnb_unselectedColor="#666666">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/trip"
         android:icon="@drawable/ic_baseline_airplanemode"
         android:title="My Trips"
-        app:cnb_iconColor="@color/home"/>
+        app:cnb_iconColor="@color/trip"/>
 
     <item
         android:id="@+id/search"
@@ -25,7 +25,7 @@
         android:id="@+id/profile"
         android:icon="@drawable/ic_baseline_people"
         android:title="Profile"
-        app:cnb_iconColor="@color/home"/>
+        app:cnb_iconColor="@color/profile"/>
 
 
 

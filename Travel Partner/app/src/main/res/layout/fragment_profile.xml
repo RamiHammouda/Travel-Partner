@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
-            android:id="@+id/rellay1"
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/profile_background"
@@ -59,8 +59,8 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="15dp"
                 android:layout_marginTop="15dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
@@ -70,7 +70,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/rellay1">
+            android:layout_below="@+id/container">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -86,20 +86,20 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="About me"
+                        android:text="@string/about_me"
                         android:textColor="@color/headings"
                         android:textSize="13sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="my name is my name is my name is my name ismy name ismy name ismy name ismy name is my name is my name ismy name is"
+                        android:text="@string/profile_text"
                         android:textColor="#000000"
                         android:textSize="18sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Email"
+                        android:text="@string/email"
                         android:textColor="@color/headings"
                         android:layout_marginTop="15dp"
                         android:textSize="13sp" />
@@ -107,7 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="rami.Hammouda@hotmail.com"
+                        android:text="@string/profile_email"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
@@ -125,7 +125,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Phone"
+                            android:text="@string/profile_phone"
                             android:textColor="@color/headings"
                             android:textSize="13sp" />
 
@@ -133,7 +133,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
-                            android:text="+491565128656"
+                            android:text="@string/profile_phone_number"
                             android:textColor="#000000"
                             android:textSize="18sp" />
 
@@ -154,7 +154,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Twitter"
+                            android:text="@string/twitter"
                             android:textColor="@color/headings"
                             android:textSize="13sp" />
 
@@ -162,7 +162,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
-                            android:text="/Rami"
+                            android:text="@string/twitter_profile"
                             android:textColor="#000000"
                             android:textSize="18sp" />
 
@@ -183,7 +183,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Facebook"
+                            android:text="@string/facebook"
                             android:textColor="@color/headings"
                             android:textSize="13sp" />
 
@@ -191,7 +191,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
-                            android:text="facebook.com/rami.hammouda"
+                            android:text="@string/facebook_profile"
                             android:textColor="#000000"
                             android:textSize="18sp" />
 
