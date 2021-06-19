@@ -50,6 +50,17 @@
     <string name="facebook">Facebook</string>
     <string name="facebook_profile">facebook.com/rami.hammouda</string>
     <string name="email">Email</string>
+    <string name="slash">-</string>
+    <string name="settings">Settings</string>
+    <string name="write_your_new_status_here">write your new status here</string>
+    <string name="address">Address</string>
+    <string name="write_your_address_here">write your address here</string>
+    <string name="type_new_name">Type new Name</string>
+    <string name="name_in_general">name</string>
+    <string name="enter_phone_number_here">Enter phone number here</string>
+    <string name="enter_twitter_profile_here">Enter twitter profile here</string>
+    <string name="enter_facebook_profile_link_here">Enter facebook profile link here</string>
+    <string name="save_all">Save All</string>
 
     <string-array name="language">
         <item>English</item>

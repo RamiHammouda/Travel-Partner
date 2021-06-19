@@ -61,5 +61,7 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.1.0' //Make ImageView circular
 
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0' //ViewModel
+
 
 }

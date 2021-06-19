@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.android.example.travelpartner.databinding.FragmentTrips5Binding
 
 
@@ -25,6 +28,7 @@ class TripsFragment5 : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentTrips5Binding //Declare the Data binding variable
+    private val tripsViewModel:TripsSharedViewModel by activityViewModels()  //initialize the ViewModel variable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +47,12 @@ class TripsFragment5 : Fragment() {
 
         //setOnClickListener for the button called "next" so that when that button is clicked the next fragment will appear in place of the second one
         binding.publishButton.setOnClickListener{
-            //save data to firebase
+            val trips6Fragment = TripsFragment6()
+            val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.fl_wrapper, trips6Fragment)
+            transaction.commit()
+            tripsViewModel.whatIsThePlan = binding.thePlan.text.toString()  //saving the plan in ViewModel on button Click
+            tripsViewModel.tripCreatedVerif = true //set the verification variable to true. This variable will be responsible for which fragment will appear when the user clicks on my trips and a trip is already created
         }
 
         //setOnClickListener for the button called "previous" so that when that button is clicked the previous fragment will appear in place of the current one
@@ -53,8 +62,7 @@ class TripsFragment5 : Fragment() {
             transaction.replace(R.id.fl_wrapper, trips3Fragment)
             transaction.commit()
         }
-
-        return binding!!.root
+                return binding!!.root
     }
 
     companion object {

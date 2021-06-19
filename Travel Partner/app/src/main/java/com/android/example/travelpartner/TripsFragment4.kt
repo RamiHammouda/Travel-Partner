@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.activityViewModels
 import com.android.example.travelpartner.databinding.FragmentTrips4Binding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,6 +27,7 @@ class TripsFragment4 : Fragment() {
     private var param2: String? = null
     private var _binding: FragmentTrips4Binding? = null //Declare the Data binding variable
     private val binding get() = _binding!! //assign the _binding value to the binding variable
+    private val tripsViewModel:TripsSharedViewModel by activityViewModels() //initialize the ViewModel variable
 
     override fun onResume() {
         //onResume function is used so that we don't loose the dropdown items when navigating between fragments
@@ -55,6 +57,7 @@ class TripsFragment4 : Fragment() {
             val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
             transaction.replace(R.id.fl_wrapper, trips2Fragment)
             transaction.commit()
+            tripsViewModel.destination = binding.autoCompleteTextView.text.toString()  //saving destination in ViewModel on button Click
         }
 
         //setOnClickListener for the button called "previous" so that when that button is clicked the previous fragment will appear in place of the current one
@@ -64,7 +67,6 @@ class TripsFragment4 : Fragment() {
             transaction.replace(R.id.fl_wrapper, trips1Fragment)
             transaction.commit()
         }
-
         return binding.root
     }
 

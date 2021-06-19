@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.activityViewModels
 import com.android.example.travelpartner.databinding.FragmentTrips2Binding
 
 
@@ -26,6 +27,7 @@ class TripsFragment2 : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentTrips2Binding //Declare the Data binding variable
+    private val tripsViewModel:TripsSharedViewModel by activityViewModels() //initialize the ViewModel variable
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +51,8 @@ class TripsFragment2 : Fragment() {
             val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
             transaction.replace(R.id.fl_wrapper, trips3Fragment)
             transaction.commit()
+            tripsViewModel.startDate = binding.from.text.toString() //saving start date in ViewModel on button Click
+            tripsViewModel.endDate = binding.to.text.toString()  //saving end date in ViewModel on button Click
         }
 
         //setOnClickListener for the button called "previous" so that when that button is clicked the previous fragment will appear in place of the current one

@@ -4,7 +4,7 @@
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment"
+    tools:context=".ProfileSettingsFragment"
     android:paddingBottom="?android:attr/actionBarSize">
 
     <RelativeLayout
@@ -35,38 +35,28 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgUser"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15sp"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/name"
+                android:text="@string/settings"
                 android:textColor="@color/white"
                 android:textSize="32sp" />
             <TextView
-                android:id="@+id/address"
+                android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/name"
+                android:layout_below="@+id/tv_name"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="sans-serif"
-                android:text="@string/berlin_germany"
+                android:text=""
                 android:textAllCaps="true"
                 android:textColor="@color/address"
                 android:textSize="14sp" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:id="@+id/settings"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="15dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_settings" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -91,34 +81,51 @@
                         android:text="@string/about_me"
                         android:textColor="@color/headings"
                         android:textSize="13sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:inputType="textMultiLine"
+                        android:autofillHints="@string/write_your_new_status_here"
+                        android:layout_width="match_parent"
                         android:id="@+id/about_me"
-                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:layout_height="80dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="@string/profile_text"
+                        android:hint="@string/write_your_new_status_here"
                         android:textColor="#000000"
                         android:textSize="18sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/email"
+                        android:text="@string/address"
+                        android:textColor="@color/headings"
+                        android:textSize="13sp" />
+                    <EditText
+                        android:inputType="text"
+                        android:autofillHints="@string/write_your_address_here"
+                        android:layout_width="match_parent"
+                        android:id="@+id/address"
+                        android:gravity="start"
+                        android:layout_height="match_parent"
+                        android:fontFamily="sans-serif-light"
+                        android:hint="@string/write_your_address_here"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/name_in_general"
                         android:textColor="@color/headings"
                         android:layout_marginTop="15dp"
                         android:textSize="13sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <EditText
+                        android:autofillHints="@string/type_new_name"
+                        android:inputType="text"
+                        android:layout_width="match_parent"
+                        android:id="@+id/name"
+                        android:layout_height="match_parent"
                         android:fontFamily="sans-serif-light"
-                        android:text="@string/profile_email"
+                        android:hint="@string/type_new_name"
                         android:textColor="#000000"
                         android:textSize="18sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="15dp"
-                        android:background="@color/grey" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -132,20 +139,16 @@
                             android:textColor="@color/headings"
                             android:textSize="13sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
+                        <EditText
+                            android:autofillHints="@string/enter_phone_number_here"
+                            android:inputType="phone"
+                            android:layout_width="match_parent"
                             android:id="@+id/phone_number"
-                            android:text="@string/profile_phone_number"
+                            android:layout_height="match_parent"
+                            android:fontFamily="sans-serif-light"
+                            android:hint="@string/enter_phone_number_here"
                             android:textColor="#000000"
                             android:textSize="18sp" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="15dp"
-                            android:background="@color/grey" />
 
                     </LinearLayout>
 
@@ -162,21 +165,16 @@
                             android:textColor="@color/headings"
                             android:textSize="13sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/twitter_profile"
+                        <EditText
+                            android:autofillHints="@string/enter_twitter_profile_here"
+                            android:inputType="text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:id="@+id/twitter"
+                            android:fontFamily="sans-serif-light"
+                            android:hint="@string/enter_twitter_profile_here"
                             android:textColor="#000000"
                             android:textSize="18sp" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="15dp"
-                            android:background="@color/grey" />
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -192,24 +190,31 @@
                             android:textColor="@color/headings"
                             android:textSize="13sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
+                        <EditText
+                            android:autofillHints="@string/enter_facebook_profile_link_here"
+                            android:inputType="text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:id="@+id/facebook"
-                            android:text="@string/facebook_profile"
+                            android:fontFamily="sans-serif-light"
+                            android:hint="@string/enter_facebook_profile_link_here"
                             android:textColor="#000000"
                             android:textSize="18sp" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="15dp"
-                            android:background="@color/grey" />
 
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/save_all"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="250dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="23dp"
+                android:layout_marginBottom="-47dp"
+                android:backgroundTint="@color/address"
+                android:text="@string/save_all" />
 
         </RelativeLayout>
 
@@ -217,4 +222,3 @@
     </RelativeLayout>
 </ScrollView>
 </layout>
-
