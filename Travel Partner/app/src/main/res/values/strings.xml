@@ -27,7 +27,7 @@
     <string name="where_are_you_going">Where are you going?</string>
     <string name="choose_destination">Choose Destination</string>
     <string name="next">Next</string>
-    <string name="gender">Gender</string>
+    <string name="gender">Preferred Gender</string>
     <string name="all">All</string>
     <string name="age">Age</string>
     <string name="_0">0</string>
@@ -55,7 +55,7 @@
     <string name="write_your_new_status_here">write your new status here</string>
     <string name="address">Address</string>
     <string name="write_your_address_here">write your address here</string>
-    <string name="type_new_name">Type new Name</string>
+    <string name="type_new_name">type new Name</string>
     <string name="name_in_general">name</string>
     <string name="enter_phone_number_here">Enter phone number here</string>
     <string name="enter_twitter_profile_here">Enter twitter profile here</string>

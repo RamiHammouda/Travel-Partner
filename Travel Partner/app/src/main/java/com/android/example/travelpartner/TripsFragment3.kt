@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.activityViewModels
 import com.android.example.travelpartner.databinding.FragmentTrips3Binding
+import kotlinx.android.synthetic.main.fragment_trips3.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +27,7 @@ class TripsFragment3 : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentTrips3Binding //Declare the Data binding variable
+    private val tripsViewModel: TripsSharedViewModel by activityViewModels() //initialize the ViewModel variable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,41 +41,48 @@ class TripsFragment3 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = DataBindingUtil.inflate<FragmentTrips3Binding>(inflater,
-            R.layout.fragment_trips3,container,false)           //Initialize the Data binding variable
+        val binding = DataBindingUtil.inflate<FragmentTrips3Binding>(
+            inflater,
+            R.layout.fragment_trips3, container, false
+        )           //Initialize the Data binding variable
 
-        //Seekbar Code: the maximum age will change depending on the value of the seekbar
-        binding.ageSeekBar.setOnSeekBarChangeListener(object  : SeekBar.OnSeekBarChangeListener{
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                binding.maximumAge.text = progress.toString()
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
-            }
-        })
 
         //setOnClickListener for the button called "next" so that when that button is clicked the next fragment will appear in place of the second one
-        binding.nextButton.setOnClickListener{
+        binding.nextButton.setOnClickListener {
             val trips5Fragment = TripsFragment5()
             val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
             transaction.replace(R.id.fl_wrapper, trips5Fragment)
             transaction.commit()
+
+            tripsViewModel.minimumAge =
+                binding.minimumAge.text.toString()  //saving the minimumAge in ViewModel on "next" button Click
+            tripsViewModel.maximumAge =
+                binding.minimumAge.text.toString()  //saving the maximumAge in ViewModel on "next" button Click
+
+            //The following if conditions will verify which checkbox is checked and depending on the checked box the preferred gender will be saved
+            if (binding.checkBoxAll.isChecked) {
+                tripsViewModel.preferredGender = "All"
+            } else
+                if (binding.checkBoxMale.isChecked) {
+                    tripsViewModel.preferredGender = "Male"
+                } else
+                    if (binding.checkBoxFemale.isChecked) {
+                        tripsViewModel.preferredGender = "Female"
+                    } else
+                        if (binding.checkBoxOther.isChecked) {
+                            tripsViewModel.preferredGender = "Other"
+                        }
         }
 
         //setOnClickListener for the button called "previous" so that when that button is clicked the previous fragment will appear in place of the current one
-        binding.previousButton.setOnClickListener{
+        binding.previousButton.setOnClickListener {
             val trips2Fragment = TripsFragment2()
             val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
             transaction.replace(R.id.fl_wrapper, trips2Fragment)
             transaction.commit()
         }
 
-        return  binding!!.root
+        return binding!!.root
     }
 
     companion object {

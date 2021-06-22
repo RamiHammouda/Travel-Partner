@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import com.android.example.travelpartner.databinding.FragmentProfileBinding
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,6 +30,7 @@ class ProfileFragment : Fragment() {
     private var param2: String? = null
     lateinit var binding: FragmentProfileBinding //Declare the Data binding variable
     private val tripsViewModel:TripsSharedViewModel by activityViewModels() //initialize the ViewModel variable
+    private val db = Firebase.firestore //declare the dataBase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +55,22 @@ class ProfileFragment : Fragment() {
         binding.twitter.text = tripsViewModel.twitter
         binding.facebook.text = tripsViewModel.facebook
         binding.address.text = tripsViewModel.addresss
+
+        // Create a new user with all his properties
+        val user = hashMapOf(
+            "name" to tripsViewModel.name,
+            "aboutMe" to tripsViewModel.aboutMe,
+            //"email" to tripsViewModel.,
+            "phoneNumber" to tripsViewModel.phoneNumber,
+            "twitterLink" to tripsViewModel.twitter,
+            "facebookLink" to tripsViewModel.facebook,
+            "age" to tripsViewModel.age,
+            "gender" to tripsViewModel.gender,
+            "address" to tripsViewModel.addresss,
+        )
+
+        //Every user will have a document identifying him
+        db.collection("users").document(tripsViewModel.name + " Profile").set(user)
 
 
         //setOnClickListener for the settings icon so that when that when the icon is clicked the settings fragment will appear

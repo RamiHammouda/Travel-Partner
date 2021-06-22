@@ -1,13 +1,18 @@
 package com.android.example.travelpartner
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import com.android.example.travelpartner.databinding.FragmentTrips6Binding
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,6 +32,8 @@ class TripsFragment6 : Fragment() {
     private var param2: String? = null
     lateinit var binding: FragmentTrips6Binding //Declare the Data binding variable
     private val tripsViewModel:TripsSharedViewModel by activityViewModels()  //initialize the ViewModel variable
+    private val db = Firebase.firestore //declare the dataBase
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +55,12 @@ class TripsFragment6 : Fragment() {
             //binding.tripImage.setImageDrawable(null)
             binding.all.removeAllViews()
             tripsViewModel.tripCreatedVerif = false //when the trip is deleted the user has no more trips so he should be forwarded to first trip fragment when he presses the "myTrips" tab
+
+            //after that we have to forward the user to the page where he can create a new trip because he just deleted his current one
+            val trips1Fragment = TripsFragment1()
+            val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.fl_wrapper, trips1Fragment)
+            transaction.commit()
         }
 
         val whatIsThePlanText = tripsViewModel.whatIsThePlan //Get the string from the viewModel from fragment number 3
