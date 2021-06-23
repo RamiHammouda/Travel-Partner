@@ -109,55 +109,6 @@
                         android:hint="@string/write_your_address_here"
                         android:textColor="#000000"
                         android:textSize="18sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_in_general"
-                        android:textColor="@color/headings"
-                        android:layout_marginTop="15dp"
-                        android:textSize="13sp" />
-                    <EditText
-                        android:autofillHints="@string/type_new_name"
-                        android:inputType="text"
-                        android:layout_width="match_parent"
-                        android:id="@+id/name"
-                        android:layout_height="match_parent"
-                        android:fontFamily="sans-serif-light"
-                        android:hint="@string/type_new_name"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Age"
-                        android:textColor="@color/headings"
-                        android:layout_marginTop="15dp"
-                        android:textSize="13sp" />
-                    <EditText
-                        android:inputType="text"
-                        android:layout_width="match_parent"
-                        android:id="@+id/age"
-                        android:layout_height="match_parent"
-                        android:fontFamily="sans-serif-light"
-                        android:hint="type your Age (private)"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Gender"
-                        android:textColor="@color/headings"
-                        android:layout_marginTop="15dp"
-                        android:textSize="13sp" />
-                    <EditText
-                        android:inputType="text"
-                        android:layout_width="match_parent"
-                        android:id="@+id/gender"
-                        android:layout_height="match_parent"
-                        android:fontFamily="sans-serif-light"
-                        android:hint="type male or female or other (private)"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

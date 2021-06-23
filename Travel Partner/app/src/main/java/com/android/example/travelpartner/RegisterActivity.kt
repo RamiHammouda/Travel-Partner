@@ -5,16 +5,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.android.example.travelpartner.databinding.ActivityRegisterBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding //data-Binding Variable declaration
+    private val tripsViewModel: TripsSharedViewModel by viewModels() //initialize the ViewModel variable
+    private val db = Firebase.firestore //declare the dataBase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +69,16 @@ class RegisterActivity : AppCompatActivity() {
 
                                 //if the registration is successful
                                 if (task.isSuccessful){
+
+                                    //if the registration is scuccessful we have to add to our firebase collection "users" the new user that just registered and add his email as a field.
+                                        //this email will be used later as identification after registering
+                                    val user = hashMapOf(
+                                        "email" to email,
+                                    )
+                                    //Every user will have a document identifying him. We have to save the new data to the corresponding document.
+                                    db.collection("users").document(email + " Profile").set(user)
+
+
                                     //firebase register user
                                     val firebaseUser: FirebaseUser = task.result!!.user!!
 
@@ -78,6 +93,7 @@ class RegisterActivity : AppCompatActivity() {
                                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     intent.putExtra("user_id", firebaseUser.uid)
                                     intent.putExtra("email_id", email)
+                                    intent.putExtra("logged", "false") //save email to get it later using intent
                                     startActivity(intent)
                                     finish()
                                 } else {

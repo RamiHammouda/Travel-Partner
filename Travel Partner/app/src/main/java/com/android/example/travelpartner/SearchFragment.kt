@@ -63,7 +63,6 @@ class SearchFragment : Fragment() {
                         binding.wholeSuggestionTab.visibility = View.VISIBLE
                         binding.viewProfile.visibility = View.VISIBLE
                         binding.button.visibility = View.VISIBLE
-
                         Log.d(TAG, "${document.id}  => ${document.data}")
                         binding.name.text = document.data["name"].toString()
                         str = document.data["name"].toString()

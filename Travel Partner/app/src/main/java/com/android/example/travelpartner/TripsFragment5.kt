@@ -82,7 +82,7 @@ class TripsFragment5 : Fragment() {
             transaction.commit()
             tripsViewModel.whatIsThePlan =
                 binding.thePlan.text.toString()  //saving the plan in ViewModel on button Click
-            tripsViewModel.tripCreatedVerif =
+            tripsViewModel.userHasTrip =
                 true //set the verification variable to true. This variable will be responsible for which fragment will appear when the user clicks on my trips and a trip is already created
         }
 

@@ -49,6 +49,7 @@ class ProfileSettingsFragment : Fragment() {
             R.layout.fragment_profile_settings,container,false)           //Initialize the Data binding variable
 
         val defaultName:String? = tripsViewModel.name
+        val usersRef = db.collection("users").document(tripsViewModel.email + " Profile") //getting the document the the corresponding user from the firebase database
 
         //setOnClickListener for the "Save all" button so that when that button is pressed all the new data will be saved and you will be forwarded to the profile fragment
         binding.saveAll.setOnClickListener{
@@ -58,82 +59,39 @@ class ProfileSettingsFragment : Fragment() {
             transaction.replace(R.id.fl_wrapper, profileFragment)
             transaction.commit()
 
-            //saving data to viewModel if the EditText box text is changed then saving it to the database on the same document if the user did not change his name
+
+            //saving data to viewModel if the EditText box text is changed then saving it to the database on the same document
             if (binding.aboutMe.text.toString().isNotEmpty())
             {
                 tripsViewModel.aboutMe = binding.aboutMe.text.toString()
-                val user = hashMapOf(
-                    "aboutMe" to tripsViewModel.aboutMe,
-                )
-                //Every user will have a document identifying him. We have to save the new data to the corresponding document
-                db.collection("users").document(tripsViewModel.name + " Profile").set(user)
-            }
-            if (binding.name.text.toString().isNotEmpty())
-            {
-                db.collection("users").document(defaultName + " Profile").delete()  //if the user changes his name the document in the collection with his old name should be deleted
-                tripsViewModel.name = binding.name.text.toString()
-                val user = hashMapOf(
-                    "name" to tripsViewModel.name,
-                )
-                //Every user will have a document identifying him. We have to save the new data to the corresponding document
-                db.collection("users").document(tripsViewModel.name + " Profile").set(user)
+                //Every user will have a document identifying him. We have to update the initialized value of "aboutMe" to what the user writes in the editText
+                usersRef.update("aboutMe",tripsViewModel.aboutMe)
             }
             if (binding.phoneNumber.text.toString().isNotEmpty())
             {
                 tripsViewModel.phoneNumber = binding.phoneNumber.text.toString()
-                val user = hashMapOf(
-                    "phoneNumber" to tripsViewModel.phoneNumber,
-                )
-                //Every user will have a document identifying him. We have to save the new data to the corresponding document
-                db.collection("users").document(tripsViewModel.name + " Profile").set(user)
+                //Every user will have a document identifying him. We have to update the initialized value of "phoneNumber" to what the user writes in the editText
+                usersRef.update("phoneNumber",tripsViewModel.phoneNumber)
             }
             if (binding.twitter.text.toString().isNotEmpty())
             {
                 tripsViewModel.twitter = binding.twitter.text.toString()
-                val user = hashMapOf(
-                    "twitter" to tripsViewModel.twitter,
-                )
-                //Every user will have a document identifying him. We have to save the new data to the corresponding document
-                db.collection("users").document(tripsViewModel.name + " Profile").set(user)
+                //Every user will have a document identifying him. We have to update the initialized value of "twitterLink" to what the user writes in the editText
+                usersRef.update("twitterLink",tripsViewModel.twitter)
             }
             if (binding.facebook.text.toString().isNotEmpty())
             {
                 tripsViewModel.facebook = binding.facebook.text.toString()
-                val user = hashMapOf(
-                    "facebook" to tripsViewModel.facebook,
-                )
-                //Every user will have a document identifying him. We have to save the new data to the corresponding document
-                db.collection("users").document(tripsViewModel.name + " Profile").set(user)
+                //Every user will have a document identifying him. We have to update the initialized value of "facebookLink" to what the user writes in the editText
+                usersRef.update("facebookLink",tripsViewModel.facebook)
             }
             if (binding.address.text.toString().isNotEmpty())
             {
                 tripsViewModel.addresss = binding.address.text.toString()
-                val user = hashMapOf(
-                    "address" to tripsViewModel.addresss,
-                )
-                //Every user will have a document identifying him. We have to save the new data to the corresponding document
-                db.collection("users").document(tripsViewModel.name + " Profile").set(user)
-            }
-            if (binding.age.text.toString().isNotEmpty())
-            {
-                tripsViewModel.age = binding.age.text.toString()
-                val user = hashMapOf(
-                    "age" to tripsViewModel.age,
-                )
-                //Every user will have a document identifying him. We have to save the new data to the corresponding document
-                db.collection("users").document(tripsViewModel.name + " Profile").set(user)
-            }
-            if (binding.gender.text.toString().isNotEmpty())
-            {
-                tripsViewModel.gender = binding.gender.text.toString()
-                val user = hashMapOf(
-                    "gender" to tripsViewModel.gender,
-                )
-                //Every user will have a document identifying him. We have to save the new data to the corresponding document
-                db.collection("users").document(tripsViewModel.name + " Profile").set(user)
+                //Every user will have a document identifying him. We have to update the initialized value of "address" to what the user writes in the editText
+                usersRef.update("address",tripsViewModel.addresss)
             }
         }
-
         return binding!!.root
     }
 

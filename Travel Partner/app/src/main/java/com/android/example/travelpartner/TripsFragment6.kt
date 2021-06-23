@@ -1,5 +1,6 @@
 package com.android.example.travelpartner
 
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -54,7 +55,7 @@ class TripsFragment6 : Fragment() {
         binding.delete.setOnClickListener{
             //binding.tripImage.setImageDrawable(null)
             binding.all.removeAllViews()
-            tripsViewModel.tripCreatedVerif = false //when the trip is deleted the user has no more trips so he should be forwarded to first trip fragment when he presses the "myTrips" tab
+            tripsViewModel.userHasTrip = false //when the trip is deleted the user has no more trips so he should be forwarded to first trip fragment when he presses the "myTrips" tab
 
             //after that we have to forward the user to the page where he can create a new trip because he just deleted his current one
             val trips1Fragment = TripsFragment1()
@@ -63,15 +64,38 @@ class TripsFragment6 : Fragment() {
             transaction.commit()
         }
 
-        val whatIsThePlanText = tripsViewModel.whatIsThePlan //Get the string from the viewModel from fragment number 3
-        binding.plan.setText(whatIsThePlanText) //set the text we got in the current layout
+//        val whatIsThePlanText = tripsViewModel.whatIsThePlan //Get the string from the viewModel from fragment number 3
+//        binding.plan.text = whatIsThePlanText //set the text we got in the current layout
+//
+//        binding.startDate.text = tripsViewModel.startDate //Assign the startDate value from the viewModel to the corresponding from the current fragment
+//        binding.endDate.text = tripsViewModel.endDate //Assign the endDate value from the viewModel to the corresponding from the current fragment
+//
+//        binding.destinationCountry.text = tripsViewModel.destination //Assign the destination value from the viewModel to the corresponding Textview from the current fragment
+//
+//        binding.withYourName.text = tripsViewModel.name //Assign the name value from the profile fragment to a TextView in the current fragment
 
-        binding.startDate.text = tripsViewModel.startDate //Assign the startDate value from the viewModel to the corresponding from the current fragment
-        binding.endDate.text = tripsViewModel.endDate //Assign the endDate value from the viewModel to the corresponding from the current fragment
-
-        binding.destinationCountry.text = tripsViewModel.destination //Assign the destination value from the viewModel to the corresponding Textview from the current fragment
-
-        binding.withYourName.text = tripsViewModel.name //Assign the name value from the profile fragment to a TextView in the current fragment
+        //the following block will be responsible to get the trip data of the logged in user from the firebase database by identifying him through his name
+        db.collection("trips")
+            .whereEqualTo("name", tripsViewModel.name)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    //here we assign the trip data to the viewTexts in the fragment and then we store the data in the viewModel in case we need it later
+                    binding.destinationCountry.text = document["destination"].toString()
+                    tripsViewModel.destination = document["destination"].toString()
+                    binding.endDate.text = document["endDate"].toString()
+                    tripsViewModel.endDate = document["endDate"].toString()
+                    binding.startDate.text = document["startDate"].toString()
+                    tripsViewModel.startDate = document["startDate"].toString()
+                    binding.plan.text = document["thePlan"].toString()
+                    tripsViewModel.whatIsThePlan = document["thePlan"].toString()
+                    binding.withYourName.text = document["name"].toString()
+                    tripsViewModel.name = document["name"].toString()
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(ContentValues.TAG, "get failed with ", exception)
+            }
 
         return binding!!.root
     }

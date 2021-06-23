@@ -95,14 +95,13 @@
         android:layout_marginStart="197dp"
         android:fontFamily="@font/roboto"/>
 
-    <EditText
-        android:hint="@string/about_me"
+    <TextView
         android:autofillHints="@string/about_me"
         android:id="@+id/plan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="220dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:gravity="start"

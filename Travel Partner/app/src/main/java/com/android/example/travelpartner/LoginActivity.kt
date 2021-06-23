@@ -1,21 +1,25 @@
 package com.android.example.travelpartner
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
 import com.android.example.travelpartner.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding //data-Binding Variable declaration
+    private val tripsViewModel: TripsSharedViewModel by viewModels() //initialize the ViewModel variable
+    private val db = Firebase.firestore //declare the dataBase
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,8 +77,8 @@ class LoginActivity : AppCompatActivity() {
                                 val intent =
                                     Intent(this@LoginActivity, Dashboard::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                intent.putExtra("user_id", FirebaseAuth.getInstance().currentUser!!.uid)
-                                intent.putExtra("email_id", email)
+                                intent.putExtra("email_id", email) //save email to get it later using intent
+                                intent.putExtra("logged", "true") //save email to get it later using intent
                                 startActivity(intent)
                                 finish()
                             } else {

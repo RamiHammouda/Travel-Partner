@@ -1,7 +1,9 @@
 package com.android.example.travelpartner
 
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,29 +50,53 @@ class ProfileFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentProfileBinding>(inflater,
             R.layout.fragment_profile,container,false)           //Initialize the Data binding variable
 
-        //Assign the Data from the viewModel
-        binding.name.text = tripsViewModel.name
-        binding.aboutMe.text = tripsViewModel.aboutMe
-        binding.phoneNumber.text = tripsViewModel.phoneNumber
-        binding.twitter.text = tripsViewModel.twitter
-        binding.facebook.text = tripsViewModel.facebook
-        binding.address.text = tripsViewModel.addresss
 
-        // Create a new user with all his properties
-        val user = hashMapOf(
-            "name" to tripsViewModel.name,
-            "aboutMe" to tripsViewModel.aboutMe,
-            //"email" to tripsViewModel.,
-            "phoneNumber" to tripsViewModel.phoneNumber,
-            "twitterLink" to tripsViewModel.twitter,
-            "facebookLink" to tripsViewModel.facebook,
-            "age" to tripsViewModel.age,
-            "gender" to tripsViewModel.gender,
-            "address" to tripsViewModel.addresss,
-        )
+        //the following block will be responsible to get the user data from the firebase database by identifying him through his email that he used for the login
+        db.collection("users")
+            .whereEqualTo("email", tripsViewModel.email)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    //here we assign the user data to the viewTexts in the fragment and then we store the data in the viewModel in case we need it later
+                    binding.name.text = document["name"].toString()
+                    tripsViewModel.name = document["name"].toString()
+                    binding.address.text = document["address"].toString()
+                    tripsViewModel.addresss = document["address"].toString()
+                    binding.phoneNumber.text = document["phoneNumber"].toString()
+                    tripsViewModel.phoneNumber = document["phoneNumber"].toString()
+                    binding.twitter.text = document["twitterLink"].toString()
+                    tripsViewModel.twitter = document["twitterLink"].toString()
+                    binding.facebook.text = document["facebookLink"].toString()
+                    tripsViewModel.addresss = document["facebookLink"].toString()
+                    binding.aboutMe.text = document["aboutMe"].toString()
+                    tripsViewModel.aboutMe = document["aboutMe"].toString()
+                    binding.email.text = document["email"].toString()
+                    tripsViewModel.email = document["email"].toString()
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(ContentValues.TAG, "get failed with ", exception)
+            }
 
-        //Every user will have a document identifying him
-        db.collection("users").document(tripsViewModel.name + " Profile").set(user)
+        //the following block will give to a boolean variable stored in viewModel a corresponding value
+        //if the user has a trip, that means a trip that is saved in the firebase Database then the boolean variable will receive "true"
+        //when this variable is true, when the user clicks on the "myTrips" button he will be forwarded to the fragment "Trips6Fragment" where he can see his trip
+        //if the user hasn't created any trip yet, that means he has no trip that is saved in the firebase Database then the boolean variable will receive "false"
+        //when this variable is false, when the user clicks on the "myTrips" button he will be forwarded to the fragment "Trips1Fragment" where he can create a new trip
+        db.collection("trips")
+            .whereEqualTo("name", tripsViewModel.name)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.d(ContentValues.TAG, "${document.id}  => ${document.data}")
+                    tripsViewModel.userHasTrip = true //when the user has a trip saved in the firebase database
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(ContentValues.TAG, "get failed with ", exception)
+                tripsViewModel.userHasTrip = false //when the use has no trips saved in the firebase database
+            }
+
 
 
         //setOnClickListener for the settings icon so that when that when the icon is clicked the settings fragment will appear
