@@ -8,14 +8,12 @@
     tools:context=".TripsFragment6">
 
     <TextView
+        style="@style/DefaultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/new_trip"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:text="@string/new_trip"/>
 
     <View
         android:layout_width="match_parent"
@@ -84,7 +82,7 @@
         android:textSize="16sp"
         android:layout_marginStart="160dp"
         android:fontFamily="@font/roboto"
-        android:text="With"/>
+        android:text="@string/with"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -100,7 +98,6 @@
         android:id="@+id/plan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
         android:layout_marginTop="220dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
@@ -109,6 +106,7 @@
         android:fontFamily="@font/roboto"/>
 
     <ImageView
+        android:contentDescription="@string/default_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="15dp"

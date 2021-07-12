@@ -1,23 +1,14 @@
 package com.android.example.travelpartner
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.android.example.travelpartner.databinding.FragmentTrips5Binding
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -88,9 +79,9 @@ class TripsFragment5 : Fragment() {
 
         //setOnClickListener for the button called "previous" so that when that button is clicked the previous fragment will appear in place of the current one
         binding.previousButton.setOnClickListener{
-            val trips3Fragment = TripsFragment3()
+            val trips2Fragment = TripsFragment2()
             val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.fl_wrapper, trips3Fragment)
+            transaction.replace(R.id.fl_wrapper, trips2Fragment)
             transaction.commit()
         }
                 return binding!!.root

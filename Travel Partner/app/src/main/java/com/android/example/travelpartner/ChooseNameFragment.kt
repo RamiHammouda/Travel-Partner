@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import com.android.example.travelpartner.databinding.FragmentChooseNameBinding
-import com.android.example.travelpartner.databinding.FragmentTrips3Binding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -67,7 +66,7 @@ class ChooseNameFragment : Fragment() {
                 "name" to tripsViewModel.name,
                 "email" to tripsViewModel.email,
                 "aboutMe" to tripsViewModel.aboutMe,
-                "address" to tripsViewModel.addresss,
+                "address" to tripsViewModel.address,
                 "phoneNumber" to tripsViewModel.phoneNumber,
                 "twitterLink" to tripsViewModel.twitter,
                 "facebookLink" to tripsViewModel.facebook,

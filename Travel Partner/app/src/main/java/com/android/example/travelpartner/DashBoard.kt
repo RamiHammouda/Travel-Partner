@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.android.example.travelpartner.databinding.ActivityDashboardBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlin.math.log
 
 class Dashboard : AppCompatActivity() {
 
@@ -39,16 +40,18 @@ class Dashboard : AppCompatActivity() {
         //get the logged variable from the login or register activity using intent
         //if it is from the register activity logged = "false"
         //if it is from the login activity logged = "true"
-        val logged = intent.getStringExtra("logged")
+        var logged = intent.getStringExtra("logged")
 
         //this is the first fragment that shows when the user logs in or registers a new account
         if (logged == "true")
         {
             makeCurrentFragment(profileFragment)
+            tripsViewModel.userHasTrip = true
         }
         else {
             //logged is "false" and that means that the user is registering and needs to be forwarded to the fragment where he needs to create a name for his profile
             makeCurrentFragment(chooseNameFragment)
+            logged = "true" //after the user chooses his profile name the logged variable must be set to "true" so that the choose name fragment won't appear again
         }
 
 

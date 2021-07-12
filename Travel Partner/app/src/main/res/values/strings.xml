@@ -61,6 +61,12 @@
     <string name="enter_twitter_profile_here">Enter twitter profile here</string>
     <string name="enter_facebook_profile_link_here">Enter facebook profile link here</string>
     <string name="save_all">Save All</string>
+    <string name="with">With</string>
+    <string name="default_image">default image</string>
+    <string name="suggestions">Suggestions</string>
+    <string name="example1">Example1</string>
+    <string name="destination">Destination:</string>
+    <string name="view_profile">View Profile</string>
 
     <string-array name="language">
         <item>English</item>

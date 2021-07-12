@@ -12,7 +12,6 @@ class TripsSharedViewModel: ViewModel() {
     var destination:String? = "Spain"
     var age:String? = "20"
     var email:String? = null
-    var gender:String? = null
     var currentSearchProfile:String? = null
 
     var aboutMe:String? = "NAN"

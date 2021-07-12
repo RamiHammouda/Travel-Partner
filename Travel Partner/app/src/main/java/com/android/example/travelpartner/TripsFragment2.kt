@@ -47,9 +47,9 @@ class TripsFragment2 : Fragment() {
 
         //setOnClickListener for the button called "next" so that when that button is clicked the next trip fragment will appear in place of the second one
         binding.nextButton.setOnClickListener{
-            val trips3Fragment = TripsFragment3()
+            val trips5Fragment = TripsFragment5()
             val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.fl_wrapper, trips3Fragment)
+            transaction.replace(R.id.fl_wrapper, trips5Fragment)
             transaction.commit()
             tripsViewModel.startDate = binding.from.text.toString() //saving start date in ViewModel on button Click
             tripsViewModel.endDate = binding.to.text.toString()  //saving end date in ViewModel on button Click

@@ -19,13 +19,11 @@
         android:importantForAccessibility="no"/>
 
     <TextView
+        style="@style/DefaultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="290dp"
-        android:textSize="20sp"
-        android:fontFamily="@font/roboto"
         android:text="@string/create_your_first_trip" />
 
     <TextView

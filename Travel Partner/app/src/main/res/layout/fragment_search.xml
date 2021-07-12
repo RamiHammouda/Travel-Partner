@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools">
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SearchFragment">
 
     <TextView
+        style="@style/DefaultText"
         android:layout_width="wrap_content"
         android:id="@+id/suggestions"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:textSize="20sp"
-        android:fontFamily="@font/roboto"
-        android:text="Suggestions"/>
+        android:text="@string/suggestions"/>
 
     <View
         android:layout_width="match_parent"
@@ -27,8 +24,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/container">
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:id="@+id/whole_suggestion_tab"
@@ -45,7 +41,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Example1"
+        android:text="@string/example1"
         android:textStyle="bold"
         android:id="@+id/name"
         android:textColor="@color/search"
@@ -54,7 +50,7 @@
             android:layout_width="wrap_content"
             android:id="@+id/destination_date"
             android:layout_height="wrap_content"
-            android:text="Destination:"
+            android:text="@string/destination"
             android:textStyle="bold"
             android:textColor="@color/search"
             android:textSize="18sp" />
@@ -75,10 +71,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="190dp"
-        android:layout_marginLeft="250dp"
+        android:layout_marginStart="250dp"
         android:textColor="@color/search"
         android:backgroundTint = "@color/white"
-        android:text="View Profile" />
+        android:text="@string/view_profile" />
 
     <Button
         android:id="@+id/button"
@@ -88,7 +84,7 @@
         android:layout_marginLeft="100dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/search"
-        android:text="next" />
+        android:text="@string/next" />
 
 </FrameLayout>
 </layout>

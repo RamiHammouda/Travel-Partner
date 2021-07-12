@@ -9,8 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import com.android.example.travelpartner.databinding.FragmentProfileSettingsBinding
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -48,7 +46,6 @@ class ProfileSettingsFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentProfileSettingsBinding>(inflater,
             R.layout.fragment_profile_settings,container,false)           //Initialize the Data binding variable
 
-        val defaultName:String? = tripsViewModel.name
         val usersRef = db.collection("users").document(tripsViewModel.email + " Profile") //getting the document the the corresponding user from the firebase database
 
         //setOnClickListener for the "Save all" button so that when that button is pressed all the new data will be saved and you will be forwarded to the profile fragment
@@ -87,9 +84,9 @@ class ProfileSettingsFragment : Fragment() {
             }
             if (binding.address.text.toString().isNotEmpty())
             {
-                tripsViewModel.addresss = binding.address.text.toString()
+                tripsViewModel.address = binding.address.text.toString()
                 //Every user will have a document identifying him. We have to update the initialized value of "address" to what the user writes in the editText
-                usersRef.update("address",tripsViewModel.addresss)
+                usersRef.update("address",tripsViewModel.address)
             }
         }
         return binding!!.root
