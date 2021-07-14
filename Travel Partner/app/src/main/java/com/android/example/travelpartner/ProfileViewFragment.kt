@@ -1,6 +1,8 @@
 package com.android.example.travelpartner
 
 import android.content.ContentValues
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -49,7 +51,7 @@ class ProfileViewFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentProfileViewBinding>(inflater,
             R.layout.fragment_profile_view,container,false)           //Initialize the Data binding variable
 
-        //get the name of the person shown in the search tab so that we show his profile informations
+        //get the name of the person shown in the search tab so that we show his profile data
         binding.name.text = tripsViewModel.currentSearchProfile
         //this block will show the profile data of the person shown on the search tab
         db.collection("users")
@@ -89,6 +91,14 @@ class ProfileViewFragment : Fragment() {
             //When a user stars a profile, we will add a field to the document of the starred profile that contains the name of the person who starred him
             db.collection("users").document(email + " Profile").set(trip, SetOptions.merge())
         }
+
+        //This Intent will send the user to the gmail app so he can send an email to the potential travel partner
+        binding.sendEmail.setOnClickListener{
+            val emailIntent = Intent(Intent.ACTION_SENDTO,
+                Uri.fromParts("mailto",email,null))
+            startActivity(Intent.createChooser(emailIntent,"Send email..."))
+        }
+
 
         return binding!!.root
     }

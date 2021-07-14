@@ -6,8 +6,6 @@ class TripsSharedViewModel: ViewModel() {
     var whatIsThePlan:String? = "nothing"
     var startDate:String? = "17.05.2021"
     var endDate:String? = "27.05.2021"
-    var minimumAge:String? = "0"
-    var maximumAge:String? = "100"
     var preferredGender:String? = "All"
     var destination:String? = "Spain"
     var age:String? = "20"

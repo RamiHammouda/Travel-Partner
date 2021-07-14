@@ -1,6 +1,8 @@
 package com.android.example.travelpartner
 
 import android.content.ContentValues
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -30,6 +32,7 @@ class ProfileViewFromNotification : Fragment() {
     private var param2: String? = null
     private val tripsViewModel:TripsSharedViewModel by activityViewModels()  //initialize the ViewModel variable
     private val db = Firebase.firestore //declare the dataBase
+    val email:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +64,7 @@ class ProfileViewFromNotification : Fragment() {
                     binding.twitter.text = document.data["twitterLink"].toString()
                     binding.facebook.text = document.data["facebookLink"].toString()
                     binding.email.text = document.data["email"].toString()
+
                 }
             }
             .addOnFailureListener { exception ->
@@ -73,6 +77,14 @@ class ProfileViewFromNotification : Fragment() {
             val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
             transaction.replace(R.id.fl_wrapper, notificationsFragment)
             transaction.commit()
+        }
+
+        //This Intent will send the user to the gmail app so he can send an email to the potential travel partner
+        binding.sendEmail.setOnClickListener{
+            val emailIntent = Intent(
+                Intent.ACTION_SENDTO,
+                Uri.fromParts("mailto",email,null))
+            startActivity(Intent.createChooser(emailIntent,"Send email..."))
         }
 
         return binding!!.root

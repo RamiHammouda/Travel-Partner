@@ -59,14 +59,11 @@ class TripsFragment5 : Fragment() {
                 "destination" to tripsViewModel.destination,
                 "startDate" to tripsViewModel.startDate,
                 "endDate" to tripsViewModel.endDate,
-                "preferredGender" to tripsViewModel.preferredGender,
-                "minimumAge" to tripsViewModel.minimumAge,
-                "maximumAge" to tripsViewModel.maximumAge,
                 "thePlan" to binding.thePlan.text.toString(),
             )
 
             //Every user will have a document with his name where his trip will be saved
-            db.collection("trips").document(tripsViewModel.name + " Trip").set(trip)
+            db.collection("trips").document(tripsViewModel.email + " Trip").set(trip)
 
             //show next fragment
             transaction.replace(R.id.fl_wrapper, trips6Fragment)

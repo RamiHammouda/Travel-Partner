@@ -67,6 +67,7 @@
     <string name="example1">Example1</string>
     <string name="destination">Destination:</string>
     <string name="view_profile">View Profile</string>
+    <string name="send_email">send email</string>
 
     <string-array name="language">
         <item>English</item>
