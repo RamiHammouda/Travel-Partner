@@ -19,7 +19,7 @@ class TripsSharedViewModel: ViewModel() {
     var phoneNumber:String? = "NAN"
     var twitter:String? = "NAN"
     var facebook:String? = "NAN"
-    var addresss:String? = "NAN"
+    var address:String? = "NAN"
 
     var userHasTrip = false
 }

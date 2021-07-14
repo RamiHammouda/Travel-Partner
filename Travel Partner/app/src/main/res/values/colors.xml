@@ -32,4 +32,8 @@
     <!--myTrips Colors-->
     <color name="tripsTextColor">#AFAFAF</color>
     <color name="lightGrey">#F2F2F2</color>
+
+    <!--notification Colors-->
+    <color name="rose">#C9379D</color>
+
 </resources>

@@ -54,6 +54,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:28.1.0') // Import the Firebase BoM
     implementation 'com.google.firebase:firebase-auth-ktx' //FireBase
     implementation 'com.google.firebase:firebase-firestore-ktx' //FireBase
+    implementation 'com.google.firebase:firebase-firestore-ktx:18.2.0'
 
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
@@ -63,6 +64,9 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0' //Make ImageView circular
 
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0' //ViewModel
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
 
 
 }

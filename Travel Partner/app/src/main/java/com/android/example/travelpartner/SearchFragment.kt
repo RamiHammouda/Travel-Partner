@@ -30,6 +30,7 @@ class SearchFragment : Fragment() {
     private var param2: String? = null
     private val tripsViewModel:TripsSharedViewModel by activityViewModels()  //initialize the ViewModel variable
     private val db = Firebase.firestore //declare the dataBase
+    private var str:String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +47,6 @@ class SearchFragment : Fragment() {
     ): View {
         val binding = DataBindingUtil.inflate<FragmentSearchBinding>(inflater,
             R.layout.fragment_search,container,false)           //Initialize the Data binding variable
-        var str:String? = null
 
         //this block will show the data of one person that has the same destination
         db.collection("trips")
@@ -57,6 +57,7 @@ class SearchFragment : Fragment() {
                     //this if condition will be used to prevent the fragment from showing the user own trip in the search tab
                     if (document.data["name"].toString() != tripsViewModel.name) {
                         //we have to make sure we restore visibility if it is set as gone when the user did not find any partners on a particular trip but now there are options
+                            binding.suggestions.text = "Suggestions"
                         binding.wholeSuggestionTab.visibility = View.VISIBLE
                         binding.viewProfile.visibility = View.VISIBLE
                         binding.button.visibility = View.VISIBLE
@@ -82,16 +83,17 @@ class SearchFragment : Fragment() {
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
-                        if (document.data["name"] != str) {
+                        if ((document.data["name"].toString() !=str) && (document.data["name"].toString() != tripsViewModel.name)){
                             //we have to make sure we restore visibility if it is set as gone when the user did not find any partners on a particular trip but now there are options
                             binding.wholeSuggestionTab.visibility = View.VISIBLE
                             binding.viewProfile.visibility = View.VISIBLE
                             binding.button.visibility = View.VISIBLE
+                            binding.suggestions.text = "Suggestions"
 
                             Log.d(TAG, "${document.id}  => ${document.data}")
                             binding.name.text = document.data["name"].toString()
                             binding.destinationDate.text =
-                                document.data["destination"].toString() + " From " + document.data["startDate"].toString() + " to " + document.data["endDate"].toString()
+                                "To " + document.data["destination"].toString() + " From " + document.data["startDate"].toString() + " to " + document.data["endDate"].toString()
                             binding.plan.text = document.data["thePlan"].toString()
                             tripsViewModel.currentSearchProfile = document.data["name"].toString()  //save the name of the person so we can implement his view profile button
                         }
@@ -118,9 +120,6 @@ class SearchFragment : Fragment() {
             binding.button.visibility = View.GONE
             binding.suggestions.text = "No Available Suggestions"
         }
-
-
-
         return binding!!.root
     }
 

@@ -67,21 +67,11 @@
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_baseline_arrow_back" />
                 <ImageView
-                    android:layout_width="40dp"
-                    android:id="@+id/settings"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginTop="15dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/ic_settings" />
-                <ImageView
                     android:layout_width="wrap_content"
                     android:id="@+id/star"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="350dp"
-                    android:layout_marginTop="120dp"
+                    android:layout_marginTop="190dp"
                     android:adjustViewBounds="true"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_baseline_star_border" />
@@ -127,6 +117,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/email"
                             android:fontFamily="sans-serif-light"
                             android:text="@string/profile_email"
                             android:textColor="#000000"
