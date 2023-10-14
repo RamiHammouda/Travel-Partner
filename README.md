@@ -4,10 +4,10 @@
 discovering travel companions. Within this platform, users can establish and update their profiles, plan and manage their trips, and seamlessly connect 
 with fellow travelers by searching through personalized filters and engaging in communication through an integrated messaging service.
 <br/> <br/>
-The Database used in this project is Firebase Database.
+Firebase Database is used in in this project.
 <br/> <br/>
 # Screenshot
-<img src="https://ibb.co/VgRT47z" width="550" title = "screenshot"> <img src="https://ibb.co/9GYZ9LH" width="550" title = "UI Program">
+<img src="https://i.ibb.co/qx1JMfY/On-Paste-20231014-074538.png" width="550" title = "screenshot"> <br/> <br/> <img src="https://i.ibb.co/y6tqjwZ/On-Paste-20231014-074655.png" width="550" title = "UI Program">
 <br/> <br/>
 # Feature List
 ##### Functional requirements:
